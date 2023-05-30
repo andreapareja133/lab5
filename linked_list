@@ -1,0 +1,61 @@
+class Pair: 
+  def __init__(self, first, rest):
+    self.first = first
+    self.rest = rest
+
+# you will implement these operations for a linked list implementation and for a NumPy Array implementation: 
+#empty_list(), add_to_front(), add(), length(), get(), set(), remove()
+
+def empty_list():
+  return None
+
+def add_to_front(list, element):
+  return Pair(element,list)
+
+def add(list, idx, value):
+  if idx < 0:
+    #this operation should raise an IndexError exception. 
+    raise IndexError('Index Invalid: Index must be greater than or equal to 0.')
+  elif idx == 0:
+    return add_to_front(list,value)
+  elif list is None:
+    raise IndexError('Value cannot be added because the list is empty.')
+  else: #carry on as planned :D
+    list.rest = add(list.rest, idx-1, value)
+    return list
+
+def length(list):
+  if list is None:
+    return 0
+  else: #carry on as planned :D
+    return length(list.rest) +1
+
+def get(list, idx):
+  if idx ==0:
+    return list.first
+  elif list is None:
+    raise IndexError('Index Invalid: The list is empty.')
+  else: #carry on as planned :D
+    return get(list.rest, idx-1)
+
+def set(list, idx, value):
+  if list is None:
+    return IndexError('Invalid Index: The list is empty.')
+  elif idx == 0:
+    list.first = value
+    return list 
+  else: #carry on as planned :D
+    list.rest = set(list.rest, idx-1, value)
+    return list
+# This function must return a 2-tuple of the removed element and the resulting list
+def remove(list,idx):
+  if list is None:
+    raise IndexError('Invalid Index: The list is empty.')
+  elif idx ==0:
+    return list.first, list.rest
+  else: #carry on as planned :D
+    headNode, rest = remove(list.rest, idx-1)
+    list.rest = rest
+    return headNode, list
+
+#WRITE TEST CASE FOR PREVIOUS FUNCTIONS!!!!
