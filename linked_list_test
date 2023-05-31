@@ -3,7 +3,7 @@ import unittest
 
 class LinkedListTest(unittest.TestCase):
   def test_empty_list(self):
-    list = empty_list()
+    list = linked_list.empty_list()
     self.assertEqual(list,None)
     
   def test_add_to_front(self):
@@ -23,11 +23,11 @@ class LinkedListTest(unittest.TestCase):
     self.assertEqual(list.rest.rest.rest.rest.rest.rest, None)
     
   def test_add(self):
-    bad_list = empty_list()
-    self.assertRaises(IndexError, add, bad_list, -1, 1)
+    bad_list = linked_list.empty_list()
+    self.assertRaises(IndexError, linked_list.add, bad_list, -1, 1)
 
-    list = Pair(1, Pair(2, Pair(4, None)))
-    list = add(list, 2, 3)
+    list = linked_list.Pair(1, linked_list.Pair(2, linked_list.Pair(4, None)))
+    list = linked_list.add(list, 2, 3)
     self.assertEqual(list.first,1)
     self.assertEqual(list.rest.first,2)
     self.assertEqual(list.rest.rest.first,3)
@@ -37,56 +37,56 @@ class LinkedListTest(unittest.TestCase):
     
   def test_length(self):
     empty = None
-    self.assertEqual(length(empty), 0)
+    self.assertEqual(linked_list.length(empty), 0)
 
-    list = empty_list()
-    list = add_to_front(list,10)
-    list = add_to_front(list,9)
-    list = add_to_front(list,8)
-    list = add_to_front(list,7)
-    list = add_to_front(list,6)
-    list = add_to_front(list,5)
-    self.assertEqual(length(list), 6)  
+    list = linked_list.empty_list()
+    list = linked_list.add_to_front(list,10)
+    list = linked_list.add_to_front(list,9)
+    list = linked_list.add_to_front(list,8)
+    list = linked_list.add_to_front(list,7)
+    list = linked_list.add_to_front(list,6)
+    list = linked_list.add_to_front(list,5)
+    self.assertEqual(linked_list.length(list), 6)  
     
   def test_get(self):
-    list = empty_list()
-    list = add_to_front(list,10)
-    list = add_to_front(list,9)
-    list = add_to_front(list,8)
-    list = add_to_front(list,7)
-    list = add_to_front(list,6)
-    list = add_to_front(list,5)
+    list = linked_list.empty_list()
+    list = linked_list.add_to_front(list,10)
+    list = linked_list.add_to_front(list,9)
+    list = linked_list.add_to_front(list,8)
+    list = linked_list.add_to_front(list,7)
+    list = linked_list.add_to_front(list,6)
+    list = linked_list.add_to_front(list,5)
     # [5,6,7,8,9,10]
-    self.assertEqual(get(list,1), 6)
-    self.assertEqual(get(list,4),9)  
+    self.assertEqual(linked_list.get(list,1), 6)
+    self.assertEqual(linked_list.get(list,4),9)  
     
   def test_set(self):
-    list = empty_list()
-    list = add_to_front(list,10)
-    list = add_to_front(list,9)
-    list = add_to_front(list,8)
-    list = add_to_front(list,7)
-    list = add_to_front(list,6)
-    list = add_to_front(list,5)
+    list = linked_list.empty_list()
+    list = linked_list.add_to_front(list,10)
+    list = linked_list.add_to_front(list,9)
+    list = linked_list.add_to_front(list,8)
+    list = linked_list.add_to_front(list,7)
+    list = linked_list.add_to_front(list,6)
+    list = linked_list.add_to_front(list,5)
     # [5,6,7,8,9,10]
-    list = set(list,0,50)
-    self.assertEqual(get(list,0), 50)
-    list = set(list,3,80)
-    self.assertEqual(get(list,3), 80)  
+    list = linked_list.set(list,0,50)
+    self.assertEqual(linked_list.get(list,0), 50)
+    list = linked_list.set(list,3,80)
+    self.assertEqual(linked_list.get(list,3), 80)  
     
   def test_remove(self):
     bad_list = None
-    self.assertRaises(IndexError, remove, bad_list, 0)
+    self.assertRaises(IndexError, linked_list.remove, bad_list, 0)
   
-    list = empty_list()
-    list = add_to_front(list,10)
-    list = add_to_front(list,9)
-    list = add_to_front(list,8)
-    list = add_to_front(list,7)
-    list = add_to_front(list,6)
-    list = add_to_front(list,5)
+    list = linked_list.empty_list()
+    list = linked_list.add_to_front(list,10)
+    list = linked_list.add_to_front(list,9)
+    list = linked_list.add_to_front(list,8)
+    list = linked_list.add_to_front(list,7)
+    list = linked_list.add_to_front(list,6)
+    list = linked_list.add_to_front(list,5)
     # [5,6,7,8,9,10]
-    removed_element, list = remove(list,0)
+    removed_element, list = linked_list.remove(list,0)
     self.assertEqual(removed_element, 5)
   
     
