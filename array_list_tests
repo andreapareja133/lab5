@@ -1,4 +1,93 @@
 import unittest
+import numpy as np
 import array_list
 
-classL
+class ListTests(unittest.TestCase):
+  def test_empty_list(self):
+    list = List()
+    self.assertEqual(list.size, 0)
+    self.assertEqual(list.capacity, 50)
+    
+  def test_add_to_front(self):
+    list = List()
+    list = add_to_front(list,10)
+    list = add_to_front(list,9)
+    list = add_to_front(list,8)
+    list = add_to_front(list,7)
+    list = add_to_front(list,6)
+    list = add_to_front(list,5)
+    self.assertEqual(list.size, 6)
+    self.assertEqual(list.array[0], 5)
+    self.assertEqual(list.array[3], 8)
+    
+  def test_bigger_array(self):
+    list = List()
+    list.bigger_array()
+    self.assertEqual(list.capacity, 500)
+    
+  def test_add(self):
+    list = List()
+    list.add(0,5)
+    list.add(1,6)
+    list.add(2,10)
+    list.add(2,9)
+    list.add(2,8)
+    list.add(2,7)
+    self.assertEqual(list.size, 6)
+    self.assertEqual(list.array[0], 5)
+    self.assertEqual(list.array[2], 7)
+    self.assertEqual(list.array[3], 8)
+    self.assertRaises(IndexError, list.add, -1, 1)
+    
+  def test_length(self):
+    list = List()
+    list.add(0,5)
+    list.add(1,6)
+    list.add(2,7)
+    list.add(3,8)
+    list.add(4,9)
+    list.add(5,10)
+    self.assert(list.length(), 6)
+    
+  def test_get(self):
+    list = List()
+    list.add(0,5)
+    list.add(1,6)
+    list.add(2,7)
+    list.add(3,8)
+    list.add(4,9)
+    list.add(5,10)
+    self.assertEqual(list.get(3), 8)
+    self.assertRaises(IndexError, list.get, -1)
+    
+  def test_remove(self):
+    list = List()
+    list.add(0,5)
+    list.add(1,6)
+    list.add(2,14)
+    list.add(3,7)
+    list.add(4,8)
+    list.add(5,9)
+    list.add(6,10)
+    # [5,6,14,7,8,9,10]
+    removed_element, list = list.remove(2)
+    # [5,6,7,8,9,10]
+    self.assertEqual(list.size, 6)
+    self.assertEqual(removed_element, 14)
+    self.assertRaises(IndexError, list.remove, -1)
+    
+    
+    
+if __name__ == '__main__':
+  unittest.main()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
