@@ -1,1 +1,51 @@
 import numpy as np
+# define the List class(es) for an array list implementation and implement the aforementioned list operations.
+# you will implement these operations for a NumPy Array implementation:   
+
+class List:
+  def __init__(self):
+    self.size = 0
+    self.capacity = 50
+    self.array = np.full(self.capacity, None)
+
+  def empty_list(self):
+    return List()
+
+  def add_to_front(self,element):
+    self.add(0, element)
+
+
+  def bigger_array(self):
+    new_capacity = self.capacity *10
+    new_array = np.full(new_capacity, None)
+    for i in range(self.size):
+      new_array[i] = self.array[i]
+    self.array = new_array
+    self.capacity = new_capacity
+  
+  def add(self, idx, element):
+    if idx < 0 or idx > self.size:
+      raise IndexError('Index must be within the list size.')
+    if self.size == self.capacity:
+      self.bigger_array()
+    for i in range(self.size, idx-1):
+      self.array[i] = self.array[i-1]
+
+    self.array[idx] = element
+    self.size += 1
+
+  def length(self):
+    return self.size
+
+  def get(self, idx, value):
+    if idx<0 or idx>=self.size:
+      raise IndexError('Index must be within list size.')
+    self.array[idx] = value  
+
+  def remove(self, idx):
+    if idx < 0 or idx >= self. size:
+      raise IndexError('Index must be within list size.')
+    removed_element = self.array[idx]
+    self.array[self.size - 1] = None
+    self.size -=1
+    return removed_element, self
